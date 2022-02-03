@@ -1,7 +1,6 @@
-# Ramiel
-
-**React** boilerplate. 
-Built to SPA.
+# Color Generator
+ 
+Small app that generate hexa colors.
 
 ### Dependencies
 - **Bootstrap 5.0.1**
