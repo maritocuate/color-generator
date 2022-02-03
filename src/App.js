@@ -7,9 +7,17 @@ import values from 'values.js'
 
 function App() {
   const [color, setColor] = useState('')
+  const [error, setError] = useState(false)
+  const [list, setList] = useState([])
+  
   const handleSubmit = e => {
     e.preventDefault()
-    console.log('ok')
+    try{
+      let colors = new values(color).all(10)
+      setList(colors)
+    }catch(error) {
+      setError(true)
+    }
   }
 
   return (
@@ -18,7 +26,7 @@ function App() {
       <h3>Color Generator</h3>
       <form className="row" onSubmit={handleSubmit}>
         <input
-          className="form-control"
+          className={`form-control ${error?'error':null}`}
           type="text"
           placeholder="#f15025"
           value={color}
@@ -31,7 +39,9 @@ function App() {
       </form>
     </div>
     <div className="colors">
-      <p>list</p>
+      {list.map((colors, i) => {
+        return <SingleColor key={i} {...color} index={i} />
+      })}
     </div>
     </>
   );
